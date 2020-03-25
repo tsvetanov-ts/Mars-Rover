@@ -17,14 +17,14 @@ class Commander
     command_list = list.split('')
     command_list.each(&method(:verify_commands))
     @current_point = Point.new(START_X, START_Y)
-    @move = Move.new(@current_point, START_DIRECTION)
     @current_direction = Direction.new(START_DIRECTION)
-    @board = Board.new
+    @move = Move.new(@current_point, @current_direction)
+    @board = Board.new(false)
     @stuck = false
   end
 
   def run
-    @move = Move.new(@current_point, START_DIRECTION)
+    @move = Move.new(@current_point, @current_direction)
     @current_direction = Direction.new(START_DIRECTION)
 
     until @commands.empty?
@@ -36,7 +36,7 @@ class Commander
         @move = Move.new(@current_point, @current_direction)
         @current_point = @move.step_forward(@current_point, @current_direction)
       else
-        @current_direction = Direction.new(rotate(@current_direction, cmd))
+        @current_direction = rotate(@current_direction, cmd)
       end
 
     end

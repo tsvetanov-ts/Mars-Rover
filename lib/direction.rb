@@ -7,6 +7,6 @@ class Direction
 
   def set_dir(dir)
     allowed = %w[north south west east]
-    @direction = dir if allowed.include? dir.downcase
+    dir if allowed.include? dir.downcase
   end
 end
