@@ -13,7 +13,7 @@ RSpec.describe Point do
     x = 11
     y = 2
     expect { Point.new(x, y) }
-        .to raise_error(StandardError, "coordinate must be integer between (O,0) and (9,9)!")
+        .to raise_error(StandardError, "coordinate must be integer between (O,0) and (10,10)!")
   end
 end
 

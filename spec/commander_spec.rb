@@ -14,12 +14,6 @@ RSpec.describe Commander do
     expect(cmd.next_command).to eq(commands[0])
   end
 
-  it 'runs long list of commands' do
-    commands = 'MMM'
-    cmd = Commander.new(commands)
-    expect(cmd.run).to eq('3,0,N')
-  end
-
   it 'has completed all commands' do
     commands = 'M'
     cmd = Commander.new(commands)
