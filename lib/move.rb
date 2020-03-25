@@ -17,7 +17,6 @@ class Move
 
   # TODO: private methods for step_north, step_south etc
   def step_forward(point, direction)
-    # @direction = direction
     case direction.direction
     when 'south'
       if point.y_coord - 1 > MIN_Y

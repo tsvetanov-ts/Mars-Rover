@@ -19,7 +19,7 @@ class Commander
     @current_point = Point.new(START_X, START_Y)
     @current_direction = Direction.new(START_DIRECTION)
     @move = Move.new(@current_point, @current_direction)
-    @board = Board.new(false)
+    @board = Board.new
     @stuck = false
   end
 
