@@ -1,29 +1,47 @@
-# frozen_string_literal: true
-module Move
-  attr :direction
+require_relative '../config/constants'
+require_relative './direction'
+require_relative './point'
+require_relative './rotation'
+require_relative './commander'
+
+class Move
+  include Constants
+  include Rotation
+  attr :dir
+  attr :current_point
+
   def initialize(point, direction)
-    @point = point
+    @current_point = point
     @direction = direction
   end
 
+  # TODO: private methods for step_north, step_south etc
   def step_forward(point, direction)
     case direction
     when 'north'
-      point = Point.new(point.x_coord, point.y_coord - 1)
+      if point.y_coord - 1 > MIN_Y
+        Point.new(point.x_coord, point.y_coord - 1)
+      else
+        step_forward(point, flip_direction(@direction))
+      end
     when 'south'
-      point = Point.new(point.x_coord, point.y_coord + 1)
+      if point.y_coord + 1 < MAX_Y
+        Point.new(point.x_coord, point.y_coord + 1)
+      else
+        step_forward(point, flip_direction(@direction))
+      end
     when 'west'
-      Point.new(point.x_coord, point.y_coord)
-    when 'east'
-      point = Point.new(point.x_coord + 1, point.y_coord)
-    else
-      point = Point.new(point.x_coord - 1, point.y_coord)
+      if point.x_coord - 1 > MIN_X
+        Point.new(point.x_coord - 1, point.y_coord)
+      else
+        step_forward(point, flip_direction(@direction))
+      end
+    else # going 'east'
+      if point.x_coord + 1 < MAX_X
+        Point.new(point.x_coord + 1, point.y_coord)
+      else
+        step_forward(point, flip_direction(@direction))
+      end
     end
-    puts "moved to #{point.x_coord}, #{point.y_coord}"
-    point
-  end
-
-  def movement_allowed(point, direction)
-    true
   end
 end

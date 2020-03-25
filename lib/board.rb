@@ -1,10 +1,11 @@
 # frozen_string_literal: true
-require_relative 'Point'
+require_relative './point'
+require_relative './rotation'
+require_relative './direction'
+require_relative './move'
 
 class Board
   include Rotation
-  include Direction
-  include Move
   attr :obstacles
 
   def initialize
@@ -12,13 +13,11 @@ class Board
     fill_obstacles
   end
 
-  def hit_obstacle(point)
-    true if @obstacles[point.y_coord * 10 + point.x_coord] == true
+  def obstacle?(point)
+    @obstacles[point.y_coord * 10 + point.x_coord]
   end
 
-  def hit_wall(point)
 
-  end
 
   private
 

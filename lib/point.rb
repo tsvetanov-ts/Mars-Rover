@@ -1,4 +1,5 @@
 require_relative '../config/constants'
+
 class Point
   include Constants
   attr_accessor :x_coord, :y_coord

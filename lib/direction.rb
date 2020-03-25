@@ -1,8 +1,12 @@
-module Direction
-  attr :dir
-  @allowed = %w[north south west east]
+class Direction
+  attr :direction
+  @@allowed = %w[north south west east]
 
-  def set(dir)
-    @dir = dir if @allowed.include? dir.downcase
+  def initialize(dir)
+    @direction = set_dir(dir)
+  end
+
+  def set_dir(dir)
+    @direction = dir if @@allowed.include? dir.downcase
   end
 end

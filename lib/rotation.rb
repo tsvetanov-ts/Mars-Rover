@@ -1,8 +1,10 @@
+require_relative '../lib/direction'
+
 module Rotation
-  attr :direction
+  attr :dir
 
   def rotate(direction, clockwise)
-    if clockwise
+    if clockwise == 'R'
       rotate_right(direction)
     else
       rotate_left(direction)
@@ -10,32 +12,32 @@ module Rotation
   end
 
   def rotate_left(direction)
-    case direction.dir
-    when 'north' then direction.set('west')
-    when 'south' then direction.set('east')
-    when 'west' then direction.set('south')
-    when 'east' then direction.set('north')
+    case direction.direction
+    when 'north' then direction.set_dir('west')
+    when 'south' then direction.set_dir('east')
+    when 'west' then direction.set_dir('south')
+    when 'east' then direction.set_dir('north')
     else raise StandardError, 'Rotation not allowed!'
     end
   end
 
   def rotate_right(direction)
-    case direction.dir
-    when 'north' then direction.set('east')
-    when 'south' then direction.set('west')
-    when 'west' then direction.set('north')
-    when 'east' then direction.set('south')
+    case direction.direction
+    when 'north' then direction.set_dir('east')
+    when 'south' then direction.set_dir('west')
+    when 'west' then direction.set_dir('north')
+    when 'east' then direction.set_dir('south')
     else raise StandardError, 'Rotation not allowed!'
     end
   end
 
-  # turn around (e.g. if wall or obstacle has been reached)
+  # turn around if border has been reached
   def flip_direction(direction)
-    case direction.dir
-    when 'north' then direction.set('south')
-    when 'south' then direction.set('north')
-    when 'west' then direction.set('east')
-    when 'east' then direction.set('west')
+    case direction.direction
+    when 'north' then direction.set_dir('south')
+    when 'south' then direction.set_dir('north')
+    when 'west' then direction.set_dir('east')
+    when 'east' then direction.set_dir('west')
     else raise StandardError, 'Rotation not allowed!'
     end
   end
