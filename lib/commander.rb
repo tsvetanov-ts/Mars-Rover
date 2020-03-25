@@ -26,13 +26,11 @@ class Commander
   def run
     @move = Move.new(@current_point, START_DIRECTION)
     @current_direction = Direction.new(START_DIRECTION)
-    until @commands.empty?
 
+    until @commands.empty?
       @stuck = true if @board.obstacle?(@current_point)
       break if @stuck
 
-      puts 'B4 CMD  ' + @current_point.inspect
-      puts 'B4 CMD  ' + @current_direction.inspect
       cmd = next_command
       if cmd == 'M'
         @move = Move.new(@current_point, @current_direction)
@@ -41,8 +39,6 @@ class Commander
         @current_direction = Direction.new(rotate(@current_direction, cmd))
       end
 
-      puts 'CMD  ' + @current_point.inspect
-      puts 'CMD  ' + @current_direction.inspect
     end
     rest
   end
@@ -50,9 +46,7 @@ class Commander
   def rest
     finish = ''
     finish += 'O,' if @stuck
-    finish += "#{@current_point.x_coord},#{@current_point.y_coord},#{translate_direction(@current_direction.direction)}"
-
-    puts finish
+    finish + "#{@current_point.x_coord},#{@current_point.y_coord},#{translate_direction(@current_direction.direction)}"
   end
 
   def next_command

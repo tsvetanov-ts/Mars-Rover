@@ -5,6 +5,6 @@ module Runner
 
   commands = ARGV.empty? ? 'MMM' : ARGV[0]
   commander = Commander.new(commands)
-  commander.run
+  puts commander.run
 
 end
