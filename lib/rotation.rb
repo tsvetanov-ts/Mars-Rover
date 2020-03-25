@@ -3,7 +3,7 @@ require_relative '../lib/direction'
 module Rotation
   attr :dir
 
-  def rotate(direction, clockwise)
+  def rotate(direction, clockwise = 'R')
     if clockwise == 'R'
       rotate_right(direction)
     else

@@ -11,4 +11,10 @@ RSpec.describe Board do
     expect(b.obstacles.include?(false))
     expect(b.obstacles.include?(true))
   end
+
+  it 'no obstacles' do
+    b = Board.new(false)
+    expect(b.obstacles.include?(false))
+    expect(!b.obstacles.include?(true))
+  end
 end

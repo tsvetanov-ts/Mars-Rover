@@ -13,7 +13,15 @@ RSpec.describe Move do
     next_point = Point.new(1, 0)
     direction = Direction.new('east')
     m = Move.new(entry_point, direction)
-    expect(m.step_forward(entry_point, direction.direction) == next_point)
+    expect(m.step_forward(entry_point, direction) == next_point)
+  end
+
+  it 'moves one step south' do
+    entry_point = Point.new(0, 0)
+    next_point = Point.new(0, 1)
+    direction = Direction.new('south')
+    m = Move.new(entry_point, direction)
+    expect(m.step_forward(entry_point, direction) == next_point)
   end
 
   it 'hits the border and moves one step in opposite direction' do
@@ -21,7 +29,7 @@ RSpec.describe Move do
     next_point = Point.new(1, 0)
     direction = Direction.new('west')
     m = Move.new(entry_point, direction)
-    expect(m.step_forward(entry_point, direction.direction) == next_point)
+    expect(m.step_forward(entry_point, direction) == next_point)
   end
 
 end
