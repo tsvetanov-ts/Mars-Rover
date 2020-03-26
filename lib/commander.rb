@@ -27,16 +27,15 @@ class Commander
     @move = Move.new(@current_point, @current_direction)
     @current_direction = Direction.new(START_DIRECTION)
 
-    until @commands.empty?
+    @commands.each do |c|
       @stuck = true if @board.obstacle?(@current_point)
       break if @stuck
 
-      cmd = next_command
-      if cmd == 'M'
+      if c == 'M'
         @move = Move.new(@current_point, @current_direction)
         @current_point = @move.step_forward(@current_point, @current_direction)
       else
-        @current_direction = rotate(@current_direction, cmd)
+        @current_direction = rotate(@current_direction, c)
       end
 
     end
@@ -49,9 +48,6 @@ class Commander
     finish + "#{@current_point.x_coord},#{@current_point.y_coord},#{translate_direction(@current_direction.direction)}"
   end
 
-  def next_command
-    @commands.shift
-  end
 
   private
 
