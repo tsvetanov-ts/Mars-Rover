@@ -15,14 +15,13 @@ class Commander
     %w[L R M]
   end
 
-  def initialize(list, name = 'Keen')
-    @name = name
+  def initialize(list, obstacles = true)
     @commands = []
     command_list = list.split('')
     command_list.each(&method(:verify_commands))
     @current_point = Point.new(START_X, START_Y)
     @current_direction = Direction.new(START_DIRECTION)
-    @board = Board.new
+    @board = Board.new(obstacles)
     @stuck = false
   end
 

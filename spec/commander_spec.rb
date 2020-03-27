@@ -8,17 +8,17 @@ RSpec.describe Commander do
     expect(cmd.commands).to eq(commands.split(''))
   end
 
-  it 'gets first command' do
-    commands = 'MMM'
-    cmd = Commander.new(commands)
-    expect(cmd.commands).to eq(commands[0])
-  end
-
-  it 'has completed all commands' do
+  it 'runs one command' do
     commands = 'M'
     cmd = Commander.new(commands)
+    expect(cmd.run).to eq('0,1,N')
+  end
+
+  it 'flips direction when no obstacles are hit' do
+    commands = 'MMMMMMMMMM' # 10 movements
+    cmd = Commander.new(commands, false)
     cmd.run
-    expect(cmd.commands).to eq(nil)
+    expect(cmd.run).to eq('0,8,N')
   end
 
   it 'fails due to illegal command' do
