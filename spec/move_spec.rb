@@ -9,33 +9,25 @@ RSpec.describe Move do
   include Rotation
   include Move
 
+  before(:each) do
+    @entry_point = Point.new(0, 0)
+    @east_or_opposite_point =  Point.new(1, 0)
+    @south_point = Point.new(0, 1)
+  end
+
   it 'moves one step east' do
-    entry_point = Point.new(0, 0)
-    next_point = Point.new(1, 0)
     direction = Direction.new('east')
-    expect(step_forward(entry_point, direction) == next_point)
+    expect(step_forward(@entry_point, direction) == @east_or_opposite_point)
   end
 
   it 'moves one step south' do
-    entry_point = Point.new(0, 0)
-    next_point = Point.new(0, 1)
     direction = Direction.new('south')
-    expect(step_forward(entry_point, direction) == next_point)
+    expect(step_forward(@entry_point, direction) == @south_point)
   end
 
   it 'hits the border and moves one step in opposite direction' do
-    entry_point = Point.new(0, 0)
-    next_point = Point.new(1, 0)
     direction = Direction.new('west')
-    expect(step_forward(entry_point, direction) == next_point)
-  end
-
-
-  it 'hits the border and moves one step in opposite direction' do
-    entry_point = Point.new(0, 0)
-    next_point = Point.new(1, 0)
-    direction = Direction.new('west')
-    expect(step_forward(entry_point, direction) == next_point)
+    expect(step_forward(@entry_point, direction) == @east_or_opposite_point)
   end
 end
 
