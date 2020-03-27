@@ -8,6 +8,8 @@ require_relative '../config/constants'
 class Board
   include Constants
   include Rotation
+  include Move
+
   attr :obstacles
 
   def initialize(has_obstacles = true)

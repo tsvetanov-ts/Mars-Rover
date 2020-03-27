@@ -7,6 +7,7 @@ require_relative '../config/constants'
 RSpec.describe Rotation do
   include Constants
   include Rotation
+  include Move
 
   it 'rotates left' do
     direction = Direction.new('north')

@@ -11,14 +11,14 @@ RSpec.describe Commander do
   it 'gets first command' do
     commands = 'MMM'
     cmd = Commander.new(commands)
-    expect(cmd.next_command).to eq(commands[0])
+    expect(cmd.commands).to eq(commands[0])
   end
 
   it 'has completed all commands' do
     commands = 'M'
     cmd = Commander.new(commands)
-    cmd.next_command
-    expect(cmd.next_command).to eq(nil)
+    cmd.run
+    expect(cmd.commands).to eq(nil)
   end
 
   it 'fails due to illegal command' do

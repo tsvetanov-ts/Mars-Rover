@@ -2,18 +2,14 @@ require_relative '../config/constants'
 require_relative './direction'
 require_relative './point'
 require_relative './rotation'
-require_relative './commander'
 
-class Move
+
+module Move
   include Constants
   include Rotation
   attr :dir
   attr :current_point
 
-  def initialize(point, direction)
-    @current_point = point
-    @direction = direction
-  end
 
   # TODO: private methods for step_north, step_south etc
   def step_forward(point, direction)
